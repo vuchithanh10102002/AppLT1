@@ -49,10 +49,13 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-storage")
+    implementation("com.firebaseui:firebase-ui-database:8.0.2")
 
     //anh hinh tron
     implementation("de.hdodenhof:circleimageview:3.1.0")
     //load img from url
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("com.orhanobut:dialogplus:1.11@aar")
 
 }

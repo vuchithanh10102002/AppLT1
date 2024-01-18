@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppLT"
         tools:targetApi="31">
         <activity
+            android:name=".Add_Activity"
+            android:exported="false" />
+        <activity
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
