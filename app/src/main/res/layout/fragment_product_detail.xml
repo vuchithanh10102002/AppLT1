@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/productDetail"
+    android:background="@color/gray"
+    tools:context=".ProductDetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_product_item"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/t_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="[New 100%] Dell Inspiron 16 Plus 7620 - Intel Core i7 12700H | RAM 40GB | SSD 1TB | 16 inch' 3K"
+                android:textSize="16dp"
+                android:textStyle="bold"
+
+                />
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/product2"
+                android:layout_marginBottom="27dp"
+                android:layout_gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="19dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:background="@drawable/bg_price"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25.500.000"
+                        android:textStyle="bold"
+                        android:textColor="@color/red"
+                        android:textSize="24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/t_price_old"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25.500.000"
+                        android:textColor="#545F71"
+                        android:textStyle="bold"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lượng"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:layout_marginBottom="7dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/btn_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/minus"
+                    android:backgroundTint="@color/gray"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="1"
+                    android:textSize="20dp"
+                    android:background="@drawable/bg_quantity"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plus"
+                    android:backgroundTint="@color/gray"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                >
+
+                <Button
+                    android:layout_width="217dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_buy"
+                    android:text="MUA NGAY"
+                    android:textSize="20dp"
+                    app:backgroundTint="#D70018"
+                    android:layout_marginRight="20dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_addcart"
+                    android:layout_width="109dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/cart"
+                    android:background="@drawable/bg_cart"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_goingay"
+                android:padding="15dp"
+                android:layout_marginBottom="14dp"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/goingay"
+                    android:layout_marginRight="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Gọi ngay 0364560092 để được tư vấn tốt nhất"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@drawable/bg_thongtin"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông số kỹ thuật"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_thongtin"
+                    android:padding="15dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/t_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- CPU: Intel® Core i7 1270P (18MB Cache, 2.2Ghz up to 4.8GHz)\n- RAM: 16GB LPDDR5 5200MHz\n- Ổ cứng: 512G PCIe Gen4 M.2 SSD\n- Card VGA: Intel® Iris® Xe Graphics\n- Màn hình: 13.4″ 3.5K Cảm Ứng, 500-nit, 100% sRGB\n- Webcam: HD webcam\n- Kết nối: 2 x Thunderbolt 4 (USB Type-C) ports 1 x Fingerprint reader 1 x USB Type-C to Type-A adapter included\n- Trọng lượng: 1.2 kg\n- Pin: 55Whr\n- Hệ điều hành: Windows 11 bản quyền"
+                        android:lineHeight="24dp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196012204353",
+    "project_id": "applt-284dd",
+    "storage_bucket": "applt-284dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196012204353:android:9fc6f415afb902075c81c0",
+        "android_client_info": {
+          "package_name": "com.example.applt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZrgun9zaq15jcrF2B7kqb0GW7mneMdK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

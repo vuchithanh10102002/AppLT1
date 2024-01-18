@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    android:layout_marginBottom="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item_cart"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            >
+
+            <ImageView
+                android:id="@+id/cart_img"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/product1" />
+
+            <TextView
+                android:id="@+id/cart_name"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="-1dp"
+                android:text="[New 2023] Lenovo Legion Slim 5 2023 (R7000) (Ryzen 7 7735H, RTX 4060-8GB, Ram 16GB, SSD 512GB, Màn 15,6' 2,5K 165Hz) "
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/cart_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26.990.000đ"
+            android:textColor="@color/red"
+            android:layout_marginBottom="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="68dp"
+                    android:layout_height="28dp"
+                    android:text="Số lượng: "
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/qty_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:text="1"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_removeCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="23dp"
+                android:text="Xóa"
+                android:textColor="@color/red"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
