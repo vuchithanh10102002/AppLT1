@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ChangePasswordFragment extends Fragment {
 
@@ -54,18 +56,12 @@ public class ChangePasswordFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(requireContext(), "Đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
-
-                            FragmentManager fragmentManager = getParentFragmentManager();
-                            UserFragment mUserFragment = new UserFragment();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frame_layout, mUserFragment)
-                                    .addToBackStack(null)
-                                    .commit();
                         }
                     }
 
                 });
     }
+
 
     private void initUI(View view) {
         t_changePassword = view.findViewById(R.id.t_changePassword);

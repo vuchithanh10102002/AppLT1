@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,8 +85,6 @@ public class ProductDetailFragment extends Fragment {
 
         DatabaseReference productsRef = myRef.child(productId);
 
-
-
         productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -102,7 +101,7 @@ public class ProductDetailFragment extends Fragment {
 //                    product_img.setImageResource(product.getImage());
 
                     float priceProductNumber = product.getPrice();
-                    float priceOldProductNumber = product.getPrice();
+                    float priceOldProductNumber = product.getPrice_old();
                     String stringPrice, stringPriceOld;
 
                     if (priceProductNumber >= 1000) {
@@ -137,6 +136,7 @@ public class ProductDetailFragment extends Fragment {
                         public void onClick(View v) {
 
                             Integer qty = Integer.parseInt(quantity.getText().toString().trim());
+                            product.setId(productId);
                             onClickAddtoCart(product, qty);
                         }
                     });
@@ -159,8 +159,8 @@ public class ProductDetailFragment extends Fragment {
 
     private void getProductDetail(View view) {
         product_name = view.findViewById(R.id.t_fullname);
-        product_price = view.findViewById(R.id.price);
-        product_priceOld = view.findViewById(R.id.t_price_old);
+        product_price = view.findViewById(R.id.t_price);
+        product_priceOld = view.findViewById(R.id.t_price_old1);
         product_content  = view.findViewById(R.id.t_content);
         product_img = view.findViewById(R.id.product_img);
         btn_addcart = view.findViewById(R.id.btn_addcart);
@@ -169,15 +169,13 @@ public class ProductDetailFragment extends Fragment {
         quantity = view.findViewById(R.id.quantity);
     }
 
-    private void onClickAddtoCart(Product product, int quantity) {
+    private void onClickAddtoCart(Product product ,int quantity) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Cart");
 
-        String pathObject = String.valueOf(product.getId());
-
         Cart cartProduct = new Cart(product, quantity);
 
-        myRef.child(pathObject).setValue(cartProduct, new DatabaseReference.CompletionListener() {
+        myRef.push().setValue(cartProduct, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 Toast.makeText(requireContext(), "Thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();

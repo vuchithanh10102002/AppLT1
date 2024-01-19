@@ -69,11 +69,13 @@ public class LoginActivity extends AppCompatActivity {
         btn_forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
                 startActivity(intent);
-                finishAffinity();
             }
         });
+
+
 
 
     }

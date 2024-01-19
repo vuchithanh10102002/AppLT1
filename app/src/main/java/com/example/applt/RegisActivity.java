@@ -70,7 +70,7 @@ public class RegisActivity extends AppCompatActivity {
                             if(user != null) {
                                 String uid = user.getUid();
 
-                                User user1 = new User("", email, pass, "", "user");
+                                User user1 = new User("", email, "", "user");
 
                                 addUserFromDb(user1, uid);
                                 Toast toast = Toast.makeText(RegisActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT);

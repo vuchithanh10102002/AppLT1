@@ -13,14 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.applt.CartFragment;
 import com.example.applt.R;
 import com.example.applt.model.Cart;
 import com.example.applt.model.Product;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
@@ -28,12 +32,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder
     private Context mContext;
     private List<Cart> mListProductCart;
 
+    private int totalPrice = 0;
+    private TextView t_total;
+
     public CartAdapter(Context mContext, List<Cart> mListProductCart) {
         this.mContext = mContext;
         this.mListProductCart = mListProductCart;
     }
-
-
 
     @NonNull
     @Override
@@ -44,6 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull cartViewHolder holder, int position) {
+
         Cart product = mListProductCart.get(position);
 
         String price = null;
@@ -73,11 +79,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder
             @Override
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Cart/" + product.getProduct().getId());
+                DatabaseReference myRef = database.getReference("Cart/" + product.getIdCart());
 
                 myRef.removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        updateCartList();
 
                     }
                 });
@@ -91,6 +98,34 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder
             return mListProductCart.size();
         }
         return 0;
+    }
+
+    private void updateCartList() {
+        DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
+        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Cart> updatedCartList = new ArrayList<>();
+
+                for (DataSnapshot cartItemSnapshot : snapshot.getChildren()) {
+                    Cart cartItem = cartItemSnapshot.getValue(Cart.class);
+                    totalPrice = totalPrice + cartItem.getProduct().getPrice() * cartItem.getQuantity();
+                    updatedCartList.add(cartItem);
+                }
+
+                CartFragment.updatePrice(totalPrice);
+
+                mListProductCart.clear();
+                mListProductCart.addAll(updatedCartList);
+
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public class cartViewHolder extends RecyclerView.ViewHolder {

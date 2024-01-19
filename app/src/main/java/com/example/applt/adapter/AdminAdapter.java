@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.applt.AdminActivity;
 import com.example.applt.R;
 import com.example.applt.model.Product;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -52,7 +51,6 @@ public class AdminAdapter extends FirebaseRecyclerAdapter<Product, AdminAdapter.
         holder.price.setText(String.valueOf(model.getPrice()));
         holder.price_old.setText(String.valueOf(model.getPrice_old()));
         holder.content.setText(model.getContent());
-        Log.d("Aloo", model.toString());
 
 
         Glide.with(holder.image.getContext())

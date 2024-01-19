@@ -23,6 +23,35 @@
             android:layout_marginBottom="16dp"
             />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng tiền: "
+                android:textSize="26dp"
+                />
+
+            <TextView
+                android:id="@+id/t_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0đ"
+                android:textSize="26dp"
+                android:layout_marginLeft="20dp"
+                />
+
+        </LinearLayout>
+
+
+
+
+
         <Button
             android:id="@+id/btn_tt"
             android:layout_width="match_parent"

@@ -19,7 +19,8 @@ public class AdminActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     AdminAdapter adminAdapter;
-    FloatingActionButton floatingActionButton;
+
+    FloatingActionButton floatingActionButton, btn_logout_admin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,16 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Add_Activity.class));
+            }
+        });
+
+        btn_logout_admin = findViewById(R.id.btn_logout_admin);
+        btn_logout_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finishAffinity();
             }
         });
 

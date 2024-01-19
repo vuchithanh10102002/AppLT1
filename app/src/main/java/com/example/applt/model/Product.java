@@ -1,7 +1,7 @@
 package com.example.applt.model;
 
 public class Product {
-    private int id;
+    private String id;
     private String name;
     private int price;
     private int price_old;
@@ -9,7 +9,7 @@ public class Product {
     private String image;
     private Product() {};
 
-    public Product(String description, String content, int id ,String image , String name, int price, int price_old) {
+    public Product(String description, String content, String id ,String image , String name, int price, int price_old) {
         this.name = name;
         this.price = price;
         this.price_old = price_old;
@@ -19,11 +19,11 @@ public class Product {
         this.image = image;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

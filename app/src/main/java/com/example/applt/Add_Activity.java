@@ -83,5 +83,7 @@ public class Add_Activity extends AppCompatActivity {
         mota.setText("");
         gia.setText("");
         surl.setText("");
+        giacu.setText("");
+        content.setText("");
     }
 }

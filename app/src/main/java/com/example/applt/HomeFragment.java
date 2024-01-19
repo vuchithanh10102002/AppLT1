@@ -138,6 +138,8 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot datasnapshot : snapshot.getChildren()) {
                     Product product = datasnapshot.getValue(Product.class);
+                    product.setId(datasnapshot.getKey());
+                    Log.d("productid", product.getId());
                     products.add(product);
                 }
 
@@ -155,7 +157,7 @@ public class HomeFragment extends Fragment {
     private void onClickItemGotoDetail(Product product) {
         Fragment newFragment = new ProductDetailFragment();
         Bundle args = new Bundle();
-        args.putString("productId", String.valueOf(product.getId()));
+        args.putString("productId", product.getId());
         newFragment.setArguments(args);
 
         FragmentManager fragmentManager = getParentFragmentManager();

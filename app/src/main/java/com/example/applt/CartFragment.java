@@ -41,11 +41,16 @@ public class CartFragment extends Fragment {
     CartAdapter cartAdapter;
 
     Button btn_tt;
+    static TextView t_total;
 
     List<Cart> cartProducts = new ArrayList<>();
     private int totalPrice = 0;
 
     private String userId = MainActivity.userId;
+
+    public static void updatePrice(int price) {
+        t_total.setText(String.valueOf(price) + "đ");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,14 +68,15 @@ public class CartFragment extends Fragment {
         btn_tt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addOnBill(cartProducts, userId, String.valueOf(totalPrice));
+                String total = t_total.getText().toString().trim();
+
+
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Cart");
 
                 myRef.removeValue();
-
-                cartAdapter.notifyDataSetChanged();
+                addOnBill(cartProducts, userId, total);
             }
         });
 
@@ -87,6 +93,9 @@ public class CartFragment extends Fragment {
         myRef.push().setValue(cartProduct, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                getListProduct();
+                t_total.setText("0đ");
+
                 Toast.makeText(requireContext(), "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -95,42 +104,37 @@ public class CartFragment extends Fragment {
     private void initUi(View view) {
         btn_tt = view.findViewById(R.id.btn_tt);
         rcv_itemCart = view.findViewById(R.id.rcv_itemCart);
+        t_total = view.findViewById(R.id.t_total);
     }
 
     private void getListProduct() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Cart");
 
-        myRef.addChildEventListener(new ChildEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Cart cartProduct = snapshot.getValue(Cart.class);
-                totalPrice = totalPrice + cartProduct.getProduct().getPrice() * cartProduct.getQuantity();
-                cartProducts.add(cartProduct);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Cart> updatedCartList = new ArrayList<>();
 
+                for (DataSnapshot cartItemSnapshot : snapshot.getChildren()) {
+                    DataSnapshot productSnapshot = cartItemSnapshot.child("product");
+                    DataSnapshot quantity = cartItemSnapshot.child("quantity");
+                    Product product = productSnapshot.getValue(Product.class);
+
+                    if (product != null) {
+                        Cart cartItem = new Cart(product, quantity.getValue(Integer.class));
+                        totalPrice = totalPrice + product.getPrice() * quantity.getValue(Integer.class);
+                        cartItem.setIdCart(cartItemSnapshot.getKey());
+                        updatedCartList.add(cartItem);
+                    }
+                }
+
+                t_total.setText(totalPrice + "đ");
+
+                // Cập nhật giỏ hàng và thông báo cho Adapter
+                cartProducts.clear();
+                cartProducts.addAll(updatedCartList);
                 cartAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Cart cartProduct = snapshot.getValue(Cart.class);
-
-
-//                cartProducts.add(cartProduct);
-
-                Log.d("aloo", cartProduct.toString());
-                cartAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
             }
 
             @Override
@@ -140,4 +144,7 @@ public class CartFragment extends Fragment {
         });
 
     }
+
+
+
 }
